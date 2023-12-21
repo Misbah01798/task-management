@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 const Deshboard = () => {
     return (
@@ -8,7 +8,11 @@ const Deshboard = () => {
                 <ul className="menu menu-xs bg-blue-200 w-56 rounded-box">
                     <li className="flex space-x-4 text-2xl font-bold text-red-300">
 
-                        <NavLink to='/dashboard/'><FaUser></FaUser> Manage User</NavLink>
+                        <NavLink to='/deshboard/createtask'> Create Task</NavLink>
+                    </li>
+                    <li className="flex space-x-4 text-2xl font-bold text-red-300">
+
+                        <NavLink to='/deshboard/mytask'> My Task</NavLink>
                     </li>
                 </ul>
             </div>

@@ -17,7 +17,7 @@ const Section2 = () => {
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
     >
-        <Heading title={'Management is used by many clients from around the world'} subtitle={'Explore & Learn More'} ></Heading>
+       
       <SwiperSlide>
         <img src={img1} alt="" />
       </SwiperSlide>

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import NewTask from './CreateTask/NewTask';
+import TaskList from './TaskList';
 
 const CreateTask = () => {
+  const [task, setTask] =useState([]);
   return (
     <div>
-      <h1>New task</h1>
+      <NewTask task={task} setTask={setTask} />
+      <TaskList task={task} setTasks={setTask}/>
     </div>
   )
 }
 
-export default CreateTask
+export default CreateTask;

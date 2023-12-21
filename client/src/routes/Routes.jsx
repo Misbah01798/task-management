@@ -5,6 +5,8 @@ import ErrorPage from '../pages/ErrorPage'
 import Login from '../pages/Login/Login'
 import SignUp from '../pages/SignUp/SignUp'
 import Deshboard from '../layouts/Deshboard'
+import CreateTask from '../components/Deshboard/CreateTask'
+import PreviousTask from '../components/Deshboard/PreviousTask/PreviousTask'
 
 
 export const router = createBrowserRouter([
@@ -27,7 +29,12 @@ export const router = createBrowserRouter([
     element:<Deshboard></Deshboard>,
     children:[
       {
-        
+        path:'createtask',
+        element:<CreateTask></CreateTask> 
+      },
+      {
+        path:'mytask',
+        element:<PreviousTask></PreviousTask> 
       }
     ]
   }
