@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import bg from '../../assets/bg.png'
 
 const SignUp = () => {
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div style={{
+      backgroundImage: `url(${bg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      width: '100%',
+      height: '100%',
+  }}>
+    <div className='flex justify-center items-center min-h-screen bg-opacity-30' >
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900 bg-opacity-50'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm text-gray-400'>Welcome to StayVista</p>
+          <p className='text-sm text-gray-800'>Welcome to Task Mangement</p>
         </div>
         <form
           noValidate=''
@@ -83,7 +91,7 @@ const SignUp = () => {
         </form>
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
+          <p className='px-3 text-sm dark:text-gray-800'>
             Signup with social accounts
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
@@ -93,7 +101,7 @@ const SignUp = () => {
 
           <p>Continue with Google</p>
         </div>
-        <p className='px-6 text-sm text-center text-gray-400'>
+        <p className='px-6 text-sm text-center text-gray-800'>
           Already have an account?{' '}
           <Link
             to='/login'
@@ -104,6 +112,7 @@ const SignUp = () => {
           .
         </p>
       </div>
+    </div>
     </div>
   )
 }

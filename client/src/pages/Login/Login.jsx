@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import bg from '../../assets/bg.png'
 
 const Login = () => {
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div style={{
+      backgroundImage: `url(${bg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      width: '100%',
+      height: '100%',
+  }}>
+    <div className='flex justify-center items-center min-h-screen bg-opacity-25' >
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900 bg-opacity-50'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Log In</h1>
-          <p className='text-sm text-gray-400'>
+          <p className='text-sm text-gray-800'>
             Sign in to access your account
           </p>
         </div>
@@ -75,7 +83,7 @@ const Login = () => {
 
           <p>Continue with Google</p>
         </div>
-        <p className='px-6 text-sm text-center text-gray-400'>
+        <p className='px-6 text-sm text-center text-gray-800'>
           Don&apos;t have an account yet?{' '}
           <Link
             to='/signup'
@@ -86,6 +94,7 @@ const Login = () => {
           .
         </p>
       </div>
+    </div>
     </div>
   )
 }
