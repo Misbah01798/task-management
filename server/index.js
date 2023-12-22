@@ -25,9 +25,10 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    // await client.connect();
+    await client.connect();
 
     const usersData = client.db('TaskManagement').collection('taskUser');
+    const taskData = client.db('TaskManagement').collection('task');
    
 
 
@@ -60,6 +61,12 @@ async function run() {
       const result = await usersData.find(query).toArray();
       res.send(result);
     });
+    app.post("/task", async (req, res) =>{
+      const user = req.body;
+      const result = await taskData.insertOne(user);
+      console.log(result);
+      res.send(result);
+  });
 
     app.post('/taskUser', async (req, res) => {
       const user = req.body;

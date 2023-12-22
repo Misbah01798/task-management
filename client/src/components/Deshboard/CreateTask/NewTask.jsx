@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2'
 
 const NewTask = ({ tasks, setTasks }) => {
   const [title, setTitle] = useState('');
@@ -7,7 +8,7 @@ const NewTask = ({ tasks, setTasks }) => {
   const [date, setDate] = useState('');
   const [priority, setPriority] = useState('low'); // Set a default priority
 
-  const handleCreateTask = (e) => {
+  const handleCreateTask = async (e) => {
     e.preventDefault();
 
     // Create a new task object
@@ -19,16 +20,38 @@ const NewTask = ({ tasks, setTasks }) => {
       priority,
       status: 'todo',
     };
+    try {
+            const res =await fetch('http://localhost:5001/task', {
+                    method: "POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                    },
+                    body:JSON.stringify(newTask)
+                });
+            const data =await res.json();
+            console.log(data);
+            if(data.acknowledged){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Add Product Successful',
+                    text: 'You have successfully ADD Product.',
+                });
+            }
+        } catch (error) {
+            console.log(error)
+            
+        }
+    }
 
     // Update the tasks state with the new task
-    setTasks([...tasks, newTask]);
+  //   setTasks([...tasks, newTask]);
 
-    // Reset the form fields
-    setTitle('');
-    setDescription('');
-    setDate('');
-    setPriority('low');
-  };
+  //   // Reset the form fields
+  //   setTitle('');
+  //   setDescription('');
+  //   setDate('');
+  //   setPriority('low');
+  // };
 
   return (
     <div>

@@ -1,8 +1,82 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import bg from '../../assets/bg.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+  
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState('');
+  const [succcesLogin, setSuccesLogin] = useState('');
+
+  const handleLogin = e => {
+      e.preventDefault();
+
+      const form = new FormData(e.currentTarget);
+      const email = form.get('email');
+      const password = form.get('password');
+      
+      
+  
+  
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,16}$/;
+      if (!passwordRegex.test(password)) {
+          setLoginError('Password must contain at least 6 characters and may include letters, numbers, and special characters.');
+          return;
+      }
+
+      setLoginError('');
+      setSuccesLogin('');
+      signIn(email, password)
+          .then(result => {
+              console.log(result.user);
+              setSuccesLogin('User Login Suucesfully')
+              navigate(location?.state ? location.state : '/');
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Login Successful',
+                  text: 'You have successfully Login.',
+              });
+              const user = {email, password};
+              fetch('https://assignment-ten-sarvar-ieycy5jmi-misbahs-projects.vercel.app/users', {
+                  method: 'POST',
+                  headers:{
+                      "Content-Type":"application/json"
+                  },
+                  body: JSON.stringify(user)
+              })
+              .then(res =>res.json())
+              .then(data =>{
+                  console.log(data)
+              })
+
+          })
+          .catch(error => {
+              console.error(error);
+              setLoginError(error.message);
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Login Error',
+                  text: error.message,
+              });
+          })
+  }
+  const handleGoogleSignIn = () => {
+      signInWithGoogle().then(result => {
+          console.log(result.user);
+          navigate(location?.state ? location.state : '/');
+      })
+
+  }
+
+
+
+
+
   return (
     <div style={{
       backgroundImage: `url(${bg})`,
@@ -20,6 +94,7 @@ const Login = () => {
           </p>
         </div>
         <form
+        onSubmit={handleLogin}
           noValidate=''
           action=''
           className='space-y-6 ng-untouched ng-pristine ng-valid'

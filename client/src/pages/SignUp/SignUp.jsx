@@ -1,8 +1,72 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import bg from '../../assets/bg.png'
+import Swal from 'sweetalert2';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
+  
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [registerError, setRegisterError] = useState('');
+  const [succesReg, setSuccesReg] = useState('');
+
+  const handleRegister = e => {
+
+      e.preventDefault();
+      console.log(e.currentTarget)
+      const form = new FormData(e.currentTarget);
+      const name = form.get('name');
+      const photo = form.get('photo');
+      const email = form.get('email');
+      const password = form.get('password');
+
+
+      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,16}$/.test(password)) {
+
+          setRegisterError('Password must contain at least 6 characters and may include letters, numbers, and special characters.');
+          Swal.fire({
+              icon: 'error',
+              title: 'Registration Error',
+              text: 'Password must contain at least 6 characters and may include letters, numbers, and special characters.'
+          });
+          return;
+      }
+
+      console.log(email, password);
+      setRegisterError('');
+      setSuccesReg('');
+
+
+      createUser(name, photo, email, password)
+          .then((userCredential) => {
+              const user = userCredential.user;
+
+              setSuccesReg('user create Successfully')
+              console.log('User registered successfully:', user);
+              navigate('/login');
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Registration Successful',
+                  text: 'You have successfully registered.'
+              });
+              return;
+
+          })
+          .catch((error) => {
+              console.error('Registration error:', error.message);
+
+              setRegisterError(error.message);
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Registration Error',
+                  text: error.message
+              });
+              return;
+
+          });
+  }
   return (
     <div style={{
       backgroundImage: `url(${bg})`,
@@ -18,6 +82,7 @@ const SignUp = () => {
           <p className='text-sm text-gray-800'>Welcome to Task Mangement</p>
         </div>
         <form
+        onSubmit={handleRegister}
           noValidate=''
           action=''
           className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -36,7 +101,7 @@ const SignUp = () => {
                 data-temp-mail-org='0'
               />
             </div>
-            <div>
+            {/* <div>
               <label htmlFor='image' className='block mb-2 text-sm'>
                 Select Image:
               </label>
@@ -47,7 +112,7 @@ const SignUp = () => {
                 name='image'
                 accept='image/*'
               />
-            </div>
+            </div> */}
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>
                 Email address
