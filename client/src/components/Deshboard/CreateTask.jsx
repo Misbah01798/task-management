@@ -3,11 +3,11 @@ import NewTask from './CreateTask/NewTask';
 import TaskList from './TaskList';
 
 const CreateTask = () => {
-  const [task, setTask] =useState([]);
+  const [tasks, setTasks] =useState([]);
   return (
-    <div>
-      <NewTask task={task} setTask={setTask} />
-      <TaskList task={task} setTasks={setTask}/>
+    <div className='bg-slate-100 h-screen flex flex-col items-center'>
+      <NewTask tasks={tasks} setTasks={setTasks} />
+      <TaskList tasks={tasks} setTasks={setTasks}/>
     </div>
   )
 }

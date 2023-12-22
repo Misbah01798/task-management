@@ -1,13 +1,84 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-const NewTask = ({task, setTask}) => {
+const NewTask = ({ tasks, setTasks }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState('');
+  const [priority, setPriority] = useState('low'); // Set a default priority
+
+  const handleCreateTask = (e) => {
+    e.preventDefault();
+
+    // Create a new task object
+    const newTask = {
+      id: uuidv4(),
+      title,
+      description,
+      date,
+      priority,
+      status: 'todo',
+    };
+
+    // Update the tasks state with the new task
+    setTasks([...tasks, newTask]);
+
+    // Reset the form fields
+    setTitle('');
+    setDescription('');
+    setDate('');
+    setPriority('low');
+  };
+
   return (
     <div>
-      <input type="text" />
-      <input type="text" />
-      <input type="text" />
+      <h1>Create New Task</h1>
+      <form onSubmit={handleCreateTask} className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+        <div>
+          <label className='block mb-2 text-sm'>Title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className='border-2 border-slate-400 bg-slate-200 rounded-lg mr-4 h-12 w-64 px-1'
+          />
+        </div>
+        <div>
+          <label className='block mb-2 text-sm'>Description</label>
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className='border-2 border-slate-400 bg-slate-200 rounded-lg mr-4 h-12 w-64 px-1'
+          />
+        </div>
+        <div>
+          <label className='block mb-2 text-sm'>Date</label>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className='border-2 border-slate-400 bg-slate-200 rounded-lg mr-4 h-12 w-64 px-1'
+          />
+        </div>
+        <div>
+          <label className='block mb-2 text-sm'>Priority:</label>
+          <select
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+            className='border-2 border-slate-400 bg-slate-200 rounded-lg mr-4 h-12 w-64 px-1'
+          >
+            <option value="low">Low</option>
+            <option value="moderate">Moderate</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <button type="submit" className='btn btn-secondary'>
+          Create
+        </button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
 export default NewTask;

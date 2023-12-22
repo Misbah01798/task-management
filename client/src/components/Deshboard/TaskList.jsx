@@ -1,6 +1,6 @@
 
 
-const TaskList = ({task, setTasks}) => {
+const TaskList = ({tasks, setTasks}) => {
   return (
     <div>
       <h1>Task list</h1>
