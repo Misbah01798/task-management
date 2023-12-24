@@ -1,9 +1,10 @@
+import TaskList from "../TaskList"
 
 
-const PreviousTask = ({task, setTask}) => {
+const PreviousTask = ({tasks, setTasks}) => {
   return (
     <div>
-      <h1>my previous task</h1>
+    <TaskList tasks={tasks} setTasks={setTasks}></TaskList>
     </div>
   )
 }

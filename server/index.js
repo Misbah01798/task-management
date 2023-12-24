@@ -67,6 +67,16 @@ async function run() {
       console.log(result);
       res.send(result);
   });
+  app.get('/task', async (req, res) => {
+    
+    let query={}
+     if(req.query.email){
+       query={email: req.query.email }
+     }
+     
+     const result = await taskData.find(query).toArray();
+     res.send(result);
+ });
 
     app.post('/taskUser', async (req, res) => {
       const user = req.body;

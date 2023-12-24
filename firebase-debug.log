@@ -1,0 +1,6 @@
+[debug] [2023-12-22T14:05:58.170Z] ----------------------------------------------------------------------
+[debug] [2023-12-22T14:05:58.175Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MIS BAH\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-12-22T14:05:58.176Z] CLI Version:   13.0.2
+[debug] [2023-12-22T14:05:58.177Z] Platform:      win32
+[debug] [2023-12-22T14:05:58.177Z] Node Version:  v21.4.0
+[debug] [2023-12-22T14:05:58.178Z] Time:          Fri Dec 22 2023 20:05:58 GMT+0600 (Bangladesh Standard Time)

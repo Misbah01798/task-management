@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 
 const Deshboard = () => {
     return (
@@ -14,6 +14,13 @@ const Deshboard = () => {
 
                         <NavLink to='/deshboard/mytask'> My Task</NavLink>
                     </li>
+                    <div className="divider"></div>
+                    <NavLink
+                        to='/'
+                        className=' px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                    >
+                        Home
+                    </NavLink>
                 </ul>
             </div>
             <div className="flex-1">

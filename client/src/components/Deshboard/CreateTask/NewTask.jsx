@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2'
+import useAuth from '../../../hooks/useAuth';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const NewTask = ({ tasks, setTasks }) => {
+  const {user} =useAuth(AuthContext);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
@@ -10,13 +13,15 @@ const NewTask = ({ tasks, setTasks }) => {
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
+    const email =user?.email;
 
     // Create a new task object
     const newTask = {
-      id: uuidv4(),
+     
       title,
       description,
       date,
+      email,
       priority,
       status: 'todo',
     };
