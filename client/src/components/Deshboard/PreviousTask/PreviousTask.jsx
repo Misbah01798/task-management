@@ -7,6 +7,7 @@ const PreviousTask = ({tasks, setTasks}) => {
     <DndProvider backend={HTML5Backend}>
     <TaskList tasks={tasks} setTasks={setTasks}></TaskList>
     </DndProvider>
+    
   )
 }
 

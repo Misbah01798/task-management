@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import TaskCard from "../Deshboard/TaskCard";
-import Header from "./Header";
+import Header from "../Shared/Header"
+import TaskCard from "./TaskCard";
 import { useDrop } from "react-dnd";
 
 
 
 const Section = ({ status, tasks, setTasks, todo , onGoing , complate }) => {
-  // const [task, setTask] =useState([]);
+  
   const [{ isOver }, drop] = useDrop(() => ({
     accept:"atask",
     drop: (item)=>addItemToSection(item._id),
@@ -27,12 +27,14 @@ const Section = ({ status, tasks, setTasks, todo , onGoing , complate }) => {
   }
   const addItemToSection =(id)=>{
     setTasks((prev)=>{
-      const otask=prev.map(t =>{
+      const otask=prev?.map((t) =>{
         if(t._id === id){
           return{...t, status: status}
         }
         return t;
       })
+      // localStorage.setItem("tasks", JSON.stringify(otask));
+      alert("Tasks status Change")
       return otask;
     })
 

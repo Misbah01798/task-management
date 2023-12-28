@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import {useSearchParams} from 'react-router-dom';
-import Section from "../Shared/Section";
+import Section from "./Section";
+
 
 
 

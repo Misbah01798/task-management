@@ -1,10 +1,12 @@
 import React from 'react'
+import { DndProvider } from 'react-dnd'
 import { Link, NavLink, Outlet } from 'react-router-dom'
+
 
 const Deshboard = () => {
     return (
-        <div className="flex">
-            <div className="w-64 min-h-screen bg-blue-300">
+        <div className="flex ">
+            <div className="w-64 min-h-screen bg-blue-300 pt-5">
                 <ul className="menu menu-xs bg-blue-200 w-56 rounded-box">
                     <li className="flex space-x-4 text-2xl font-bold text-red-300">
 
