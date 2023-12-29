@@ -33,7 +33,7 @@ const Section = ({ status, tasks, setTasks, todo , onGoing , complate }) => {
         }
         return t;
       })
-      // localStorage.setItem("tasks", JSON.stringify(otask));
+      localStorage.setItem("tasks", JSON.stringify(otask));
       alert("Tasks status Change")
       return otask;
     })
